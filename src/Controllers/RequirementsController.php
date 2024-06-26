@@ -2,7 +2,7 @@
 
 namespace Liteas98\LaravelInstaller\Controllers;
 
-use Liteas98\Routing\Controller;
+use Illuminate\Routing\Controller;
 use Liteas98\LaravelInstaller\Helpers\RequirementsChecker;
 
 class RequirementsController extends Controller
