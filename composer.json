@@ -1,0 +1,29 @@
+{
+    "name": "liteas98/laravel-installer",
+    "description": "Laravel web installer",
+    "license": "MIT",
+    "require": {
+        "php": ">=8.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Liteas98\\LaravelInstaller\\": "src/"
+        },
+        "files": [
+            "src/Helpers/functions.php"
+        ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Liteas98\\LaravelInstaller\\Providers\\LaravelInstallerServiceProvider"
+            ]
+        }
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "stable"
+}
