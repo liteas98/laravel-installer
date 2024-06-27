@@ -37,18 +37,18 @@
             <div class="tab" id="tab1content">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                <!-- <div class="form-group {{ $errors->has('purchase_code') ? ' has-error ' : '' }}">
-                    <label for="purchase_code">
-                        Envato Purchase Code
-                    </label>
-                    <input type="text" name="purchase_code" id="purchase_code" value="" placeholder="Your purchase code" />
-                    @if ($errors->has('purchase_code'))
-                        <span class="error-block">
-                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>
-                            {{ $errors->first('purchase_code') }}
-                        </span>
-                    @endif
-                </div> -->
+{{--                <div class="form-group {{ $errors->has('purchase_code') ? ' has-error ' : '' }}">--}}
+{{--                    <label for="purchase_code">--}}
+{{--                        Envato Purchase Code--}}
+{{--                    </label>--}}
+{{--                    <input type="text" name="purchase_code" id="purchase_code" value="" placeholder="Your purchase code" />--}}
+{{--                    @if ($errors->has('purchase_code'))--}}
+{{--                        <span class="error-block">--}}
+{{--                            <i class="fa fa-fw fa-exclamation-triangle" aria-hidden="true"></i>--}}
+{{--                            {{ $errors->first('purchase_code') }}--}}
+{{--                        </span>--}}
+{{--                    @endif--}}
+{{--                </div>--}}
 
                 <div class="form-group {{ $errors->has('app_name') ? ' has-error ' : '' }}">
                     <label for="app_name">
