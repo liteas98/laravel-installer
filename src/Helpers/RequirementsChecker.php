@@ -4,20 +4,9 @@ namespace Liteas98\LaravelInstaller\Helpers;
 
 class RequirementsChecker
 {
-    /**
-     * Minimum PHP Version Supported (Override is in installer.php config file).
-     *
-     * @var _minPhpVersion
-     */
-    private $_minPhpVersion = '7.0.0';
+    private string $_minPhpVersion = '8.1.0';
 
-    /**
-     * Check for the server requirements.
-     *
-     * @param array $requirements
-     * @return array
-     */
-    public function check(array $requirements)
+    public function check(array $requirements): array
     {
         $results = [];
 
@@ -56,12 +45,7 @@ class RequirementsChecker
         return $results;
     }
 
-    /**
-     * Check PHP version requirement.
-     *
-     * @return array
-     */
-    public function checkPHPversion(string $minPhpVersion = null)
+    public function checkPHPversion(string $minPhpVersion = null): array
     {
         $minVersionPhp = $minPhpVersion;
         $currentPhpVersion = $this->getPhpVersionInfo();
@@ -85,12 +69,7 @@ class RequirementsChecker
         return $phpStatus;
     }
 
-    /**
-     * Get current Php version information.
-     *
-     * @return array
-     */
-    private static function getPhpVersionInfo()
+    private static function getPhpVersionInfo(): array
     {
         $currentVersionFull = PHP_VERSION;
         preg_match("#^\d+(\.\d+)*#", $currentVersionFull, $filtered);
@@ -102,12 +81,7 @@ class RequirementsChecker
         ];
     }
 
-    /**
-     * Get minimum PHP version ID.
-     *
-     * @return string _minPhpVersion
-     */
-    protected function getMinPhpVersion()
+    protected function getMinPhpVersion(): string
     {
         return $this->_minPhpVersion;
     }

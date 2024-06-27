@@ -7,25 +7,14 @@ use Liteas98\LaravelInstaller\Helpers\RequirementsChecker;
 
 class RequirementsController extends Controller
 {
-    /**
-     * @var RequirementsChecker
-     */
-    protected $requirements;
+    protected RequirementsChecker $requirements;
 
-    /**
-     * @param RequirementsChecker $checker
-     */
     public function __construct(RequirementsChecker $checker)
     {
         $this->requirements = $checker;
     }
 
-    /**
-     * Display the requirements page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function requirements()
+    public function requirements(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $phpSupportInfo = $this->requirements->checkPHPversion(
             config('installer.core.minPhpVersion')

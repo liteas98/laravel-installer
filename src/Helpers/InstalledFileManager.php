@@ -4,12 +4,7 @@ namespace Liteas98\LaravelInstaller\Helpers;
 
 class InstalledFileManager
 {
-    /**
-     * Create installed file.
-     *
-     * @return int
-     */
-    public function create()
+    public function create(): string
     {
         $installedLogFile = storage_path('installed');
 
@@ -28,11 +23,6 @@ class InstalledFileManager
         return $message;
     }
 
-    /**
-     * Update installed file.
-     *
-     * @return int
-     */
     public function update()
     {
         return $this->create();

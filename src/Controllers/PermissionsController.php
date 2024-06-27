@@ -7,25 +7,14 @@ use Liteas98\LaravelInstaller\Helpers\PermissionsChecker;
 
 class PermissionsController extends Controller
 {
-    /**
-     * @var PermissionsChecker
-     */
-    protected $permissions;
+    protected PermissionsChecker $permissions;
 
-    /**
-     * @param PermissionsChecker $checker
-     */
     public function __construct(PermissionsChecker $checker)
     {
         $this->permissions = $checker;
     }
 
-    /**
-     * Display the permissions check page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function permissions()
+    public function permissions(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $permissions = $this->permissions->check(
             config('installer.permissions')

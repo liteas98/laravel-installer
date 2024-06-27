@@ -8,22 +8,12 @@ class canUpdate
 {
     use \Liteas98\LaravelInstaller\Helpers\MigrationsHelper;
 
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
     public function handle($request, Closure $next)
     {
         $updateEnabled = filter_var(config('installer.updaterEnabled'), FILTER_VALIDATE_BOOLEAN);
         switch ($updateEnabled) {
             case true:
                 $canInstall = new canInstall;
-
-                // if the application has not been installed,
-                // redirect to the installer
                 if (! $canInstall->alreadyInstalled()) {
                     return redirect()->route('LaravelInstaller::welcome');
                 }
@@ -42,23 +32,15 @@ class canUpdate
         return $next($request);
     }
 
-    /**
-     * If application is already updated.
-     *
-     * @return bool
-     */
-    public function alreadyUpdated()
+    public function alreadyUpdated(): bool
     {
         $migrations = $this->getMigrations();
         $dbMigrations = $this->getExecutedMigrations();
 
-        // If the count of migrations and dbMigrations is equal,
-        // then the update as already been updated.
         if (count($migrations) == count($dbMigrations)) {
             return true;
         }
 
-        // Continue, the app needs an update
         return false;
     }
 }

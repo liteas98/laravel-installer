@@ -9,41 +9,21 @@ use Liteas98\LaravelInstaller\Middleware\canUpdate;
 
 class LaravelInstallerServiceProvider extends ServiceProvider
 {
-    /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
+    protected bool $defer = false;
 
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    public function register()
+    public function register(): void
     {
         $this->publishFiles();
         $this->loadRoutesFrom(__DIR__.'/../Routes/web.php');
     }
 
-    /**
-     * Bootstrap the application events.
-     *
-     * @param \Illuminate\Routing\Router $router
-     */
-    public function boot(Router $router)
+    public function boot(Router $router): void
     {
         $router->middlewareGroup('install', [CanInstall::class]);
         $router->middlewareGroup('update', [CanUpdate::class]);
     }
 
-    /**
-     * Publish config file for the installer.
-     *
-     * @return void
-     */
-    protected function publishFiles()
+    protected function publishFiles(): void
     {
         $this->publishes([
             __DIR__.'/../Config/installer.php' => base_path('config/installer.php'),

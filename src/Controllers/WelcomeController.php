@@ -6,12 +6,7 @@ use Illuminate\Routing\Controller;
 
 class WelcomeController extends Controller
 {
-    /**
-     * Display the installer welcome page.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function welcome()
+    public function welcome(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('vendor.installer.welcome');
     }

@@ -10,15 +10,7 @@ use Liteas98\LaravelInstaller\Helpers\InstalledFileManager;
 
 class FinalController extends Controller
 {
-    /**
-     * Update installed file and display finished view.
-     *
-     * @param \Liteas98\LaravelInstaller\Helpers\InstalledFileManager $fileManager
-     * @param \Liteas98\LaravelInstaller\Helpers\FinalInstallManager $finalInstall
-     * @param \Liteas98\LaravelInstaller\Helpers\EnvironmentManager $environment
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function finish(InstalledFileManager $fileManager, FinalInstallManager $finalInstall, EnvironmentManager $environment)
+    public function finish(InstalledFileManager $fileManager, FinalInstallManager $finalInstall, EnvironmentManager $environment): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $finalMessages = $finalInstall->runFinal();
         $finalStatusMessage = $fileManager->update();

@@ -11,7 +11,7 @@ class EnvironmentSaved
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    private $request;
+    private Request $request;
 
     /**
      * Create a new event instance.
@@ -24,7 +24,7 @@ class EnvironmentSaved
         $this->request = $request;
     }
 
-    public function getRequest()
+    public function getRequest(): Request
     {
         return $this->request;
     }

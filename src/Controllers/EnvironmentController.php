@@ -7,67 +7,39 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 use Liteas98\LaravelInstaller\Events\EnvironmentSaved;
 use Liteas98\LaravelInstaller\Helpers\EnvironmentManager;
-use Validator;
 
 class EnvironmentController extends Controller
 {
-    /**
-     * @var EnvironmentManager
-     */
-    protected $EnvironmentManager;
+    protected EnvironmentManager $EnvironmentManager;
 
-    /**
-     * @param EnvironmentManager $environmentManager
-     */
     public function __construct(EnvironmentManager $environmentManager)
     {
         $this->EnvironmentManager = $environmentManager;
     }
 
-    /**
-     * Display the Environment menu page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function environmentMenu()
+    public function environmentMenu(): \Illuminate\View\View
     {
         return view('vendor.installer.environment');
     }
 
-    /**
-     * Display the Environment page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function environmentWizard()
+    public function environmentWizard(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $envConfig = $this->EnvironmentManager->getEnvContent();
 
         return view('vendor.installer.environment-wizard', compact('envConfig'));
     }
 
-    /**
-     * Display the Environment page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function environmentClassic()
+    public function environmentClassic(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $envConfig = $this->EnvironmentManager->getEnvContent();
 
         return view('vendor.installer.environment-classic', compact('envConfig'));
     }
 
-    /**
-     * Processes the newly saved environment configuration (Classic).
-     *
-     * @param Request $input
-     * @param Redirector $redirect
-     * @return \Illuminate\Http\RedirectResponse
-     */
-    public function saveClassic(Request $input, Redirector $redirect)
+    public function saveClassic(Request $input, Redirector $redirect): \Illuminate\Contracts\View\Factory|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\View|\Illuminate\View\View|\Illuminate\Http\RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $message = $this->EnvironmentManager->saveFileClassic($input);
 
@@ -106,20 +78,13 @@ class EnvironmentController extends Controller
         }
 
         if (isset($errors) || !$code){
-            return view('vendor.installer.environment-classic', compact('errors', 'envConfig'));
+            return view('vendor.installer.environment-classic', compact('errors'));
         }
 
         return $redirect->route('LaravelInstaller::environmentClassic')
                         ->with(['message' => $message]);
     }
 
-    /**
-     * Processes the newly saved environment configuration (Form Wizard).
-     *
-     * @param Request $request
-     * @param Redirector $redirect
-     * @return \Illuminate\Http\RedirectResponse
-     */
     public function saveWizard(Request $request, Redirector $redirect)
     {
         $rules = config('installer.environment.form.rules');
@@ -172,9 +137,8 @@ class EnvironmentController extends Controller
         }
 
         if (isset($errors) || !$code){
-            return view('vendor.installer.environment-classic', compact('errors', 'envConfig'));
+            return view('vendor.installer.environment-classic', compact('errors'));
         }
-        // فيريفيكاسيون كود
 
         $results = $this->EnvironmentManager->saveFileWizard($request);
 
@@ -184,14 +148,7 @@ class EnvironmentController extends Controller
                         ->with(['results' => $results]);
     }
 
-    /**
-     * TODO: We can remove this code if PR will be merged: https://github.com/RachidLaasri/LaravelInstaller/pull/162
-     * Validate database connection with user credentials (Form Wizard).
-     *
-     * @param Request $request
-     * @return bool
-     */
-    private function checkDatabaseConnection(Request $request)
+    private function checkDatabaseConnection(Request $request): bool
     {
         $connection = $request->input('database_connection');
 

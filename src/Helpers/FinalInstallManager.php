@@ -8,12 +8,7 @@ use Symfony\Component\Console\Output\BufferedOutput;
 
 class FinalInstallManager
 {
-    /**
-     * Run final commands.
-     *
-     * @return string
-     */
-    public function runFinal()
+    public function runFinal(): string
     {
         $outputLog = new BufferedOutput;
 
@@ -23,13 +18,7 @@ class FinalInstallManager
         return $outputLog->fetch();
     }
 
-    /**
-     * Generate New Application Key.
-     *
-     * @param \Symfony\Component\Console\Output\BufferedOutput $outputLog
-     * @return \Symfony\Component\Console\Output\BufferedOutput|array
-     */
-    private static function generateKey(BufferedOutput $outputLog)
+    private static function generateKey(BufferedOutput $outputLog): BufferedOutput|array
     {
         try {
             if (config('installer.final.key')) {
@@ -42,13 +31,7 @@ class FinalInstallManager
         return $outputLog;
     }
 
-    /**
-     * Publish vendor assets.
-     *
-     * @param \Symfony\Component\Console\Output\BufferedOutput $outputLog
-     * @return \Symfony\Component\Console\Output\BufferedOutput|array
-     */
-    private static function publishVendorAssets(BufferedOutput $outputLog)
+    private static function publishVendorAssets(BufferedOutput $outputLog): BufferedOutput|array
     {
         try {
             if (config('installer.final.publish')) {
@@ -61,14 +44,7 @@ class FinalInstallManager
         return $outputLog;
     }
 
-    /**
-     * Return a formatted error messages.
-     *
-     * @param $message
-     * @param \Symfony\Component\Console\Output\BufferedOutput $outputLog
-     * @return array
-     */
-    private static function response($message, BufferedOutput $outputLog)
+    private static function response($message, BufferedOutput $outputLog): array
     {
         return [
             'status' => 'error',

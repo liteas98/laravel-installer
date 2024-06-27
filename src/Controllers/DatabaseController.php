@@ -10,7 +10,7 @@ class DatabaseController extends Controller
     /**
      * @var DatabaseManager
      */
-    private $databaseManager;
+    private DatabaseManager $databaseManager;
 
     /**
      * @param DatabaseManager $databaseManager
@@ -20,12 +20,7 @@ class DatabaseController extends Controller
         $this->databaseManager = $databaseManager;
     }
 
-    /**
-     * Migrate and seed the database.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function database()
+    public function database(): \Illuminate\Http\RedirectResponse
     {
         $response = $this->databaseManager->migrateAndSeed();
 

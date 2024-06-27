@@ -10,22 +10,12 @@ class UpdateController extends Controller
 {
     use \Liteas98\LaravelInstaller\Helpers\MigrationsHelper;
 
-    /**
-     * Display the updater welcome page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function welcome()
+    public function welcome(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         return view('vendor.installer.update.welcome');
     }
 
-    /**
-     * Display the updater overview page.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function overview()
+    public function overview(): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $migrations = $this->getMigrations();
         $dbMigrations = $this->getExecutedMigrations();
@@ -33,12 +23,7 @@ class UpdateController extends Controller
         return view('vendor.installer.update.overview', ['numberOfUpdatesPending' => count($migrations) - count($dbMigrations)]);
     }
 
-    /**
-     * Migrate and seed the database.
-     *
-     * @return \Illuminate\View\View
-     */
-    public function database()
+    public function database(): \Illuminate\Http\RedirectResponse
     {
         $databaseManager = new DatabaseManager;
         $response = $databaseManager->migrateAndSeed();
@@ -47,13 +32,7 @@ class UpdateController extends Controller
                          ->with(['message' => $response]);
     }
 
-    /**
-     * Update installed file and display finished view.
-     *
-     * @param InstalledFileManager $fileManager
-     * @return \Illuminate\View\View
-     */
-    public function finish(InstalledFileManager $fileManager)
+    public function finish(InstalledFileManager $fileManager): \Illuminate\Contracts\View\View|\Illuminate\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Illuminate\Contracts\Foundation\Application
     {
         $fileManager->update();
 

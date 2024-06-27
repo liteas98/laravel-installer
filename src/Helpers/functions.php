@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\URL;
+
 if (! function_exists('isActive')) {
     /**
      * Set the active class to the current opened menu.
@@ -8,7 +11,7 @@ if (! function_exists('isActive')) {
      * @param  string       $className
      * @return string
      */
-    function isActive($route, $className = 'active')
+    function isActive($route, $className = 'active'): string
     {
         if (is_array($route)) {
             return in_array(Route::currentRouteName(), $route) ? $className : '';
