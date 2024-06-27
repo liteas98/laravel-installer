@@ -11,7 +11,7 @@ if (! function_exists('isActive')) {
      * @param  string       $className
      * @return string
      */
-    function isActive($route, $className = 'active'): string
+    function isActive($route, $className = 'active')
     {
         if (is_array($route)) {
             return in_array(Route::currentRouteName(), $route) ? $className : '';
