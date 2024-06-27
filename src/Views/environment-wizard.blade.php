@@ -37,7 +37,7 @@
             <div class="tab" id="tab1content">
                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-                <div class="form-group {{ $errors->has('purchase_code') ? ' has-error ' : '' }}">
+                <!-- <div class="form-group {{ $errors->has('purchase_code') ? ' has-error ' : '' }}">
                     <label for="purchase_code">
                         Envato Purchase Code
                     </label>
@@ -48,7 +48,7 @@
                             {{ $errors->first('purchase_code') }}
                         </span>
                     @endif
-                </div>
+                </div> -->
 
                 <div class="form-group {{ $errors->has('app_name') ? ' has-error ' : '' }}">
                     <label for="app_name">
